@@ -73,9 +73,12 @@ TVH =pd.DataFrame({'x': T,
                    'y': VH,})
 TAH =pd.DataFrame({'x': T,
                    'y': AH,})
-fig1 = px.line(TH, x = 'x', y = 'y', markers = True)
-fig2 = px.line(TVH, x = 'x', y = 'y', markers = True)
-fig3 = px.line(TAH, x = 'x', y = 'y', markers = True)
+fig1 = px.line(TH, x = 'x', y = 'y', markers = True,title = "Line chart title",
+              labels = {'x': 'Zeit in s', 'y':'Höhe in m'})
+fig2 = px.line(TVH, x = 'x', y = 'y', markers = True,title = "Line chart title",
+              labels = {'x': 'Zeit in s', 'y':'Geschwindikeit in m/s'})
+fig3 = px.line(TAH, x = 'x', y = 'y', markers = True,title = "Line chart title",
+              labels = {'x': 'Zeit in s', 'y':'Beschleunigung in m/s*s'})
 if input("Open Diagramm y/n -- ") == "y":
     fig1.show()
     fig2.show()
