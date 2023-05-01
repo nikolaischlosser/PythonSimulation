@@ -5,7 +5,7 @@ import pandas as pd
 class rocket():
     masse = 2
     runtime = 60
-    tw_f = 34
+    tw_f = 40
     hoehe = 0
     entfernung = 0
     vh = 0
