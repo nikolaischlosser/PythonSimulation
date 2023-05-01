@@ -6,4 +6,4 @@ h = 0 #Höhe
 
 e = 0 #Entfernung
 
-
+t = 10 # Simulationszeit
