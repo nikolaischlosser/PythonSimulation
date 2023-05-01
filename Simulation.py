@@ -1,16 +1,5 @@
 from math import *
 
-
-# Rakete = [2,5,25] # Masse in kg, Triebwerk Laufzeeit in s, Kraft von triebwerk in n
-
-
-
-# h = 0 #Höhe
-
-# e = 0 #Entfernung
-
-t = 10 # Simulationszeit
-
 class rocket():
     masse = 2
     runtime = 20
@@ -25,6 +14,7 @@ class rocket():
 
 class Umgebung():
     g = 9.81
+
 u = Umgebung()
 r = rocket()
 
@@ -32,6 +22,8 @@ H = []
 E = []
 
 t = 1000 # Simulationszeit
+
+si = 1 #SimulationsIntervall
 
 def TriebwerkLaufzeit(runtime,time, tw_f):
     if time >= runtime:
@@ -49,8 +41,3 @@ for timer in range(1,t+1):
         print(H)
         print("Aufgekommen nach "+str(timer)+" sek")
         break
-        
-
-
-    
-    
