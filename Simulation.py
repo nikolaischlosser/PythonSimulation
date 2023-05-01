@@ -76,6 +76,7 @@ TAH =pd.DataFrame({'x': T,
 fig1 = px.line(TH, x = 'x', y = 'y', markers = True)
 fig2 = px.line(TVH, x = 'x', y = 'y', markers = True)
 fig3 = px.line(TAH, x = 'x', y = 'y', markers = True)
-fig1.show()
-fig2.show()
-fig3.show()
+if input("Open Diagramm y/n -- ") == "y":
+    fig1.show()
+    fig2.show()
+    fig3.show()
