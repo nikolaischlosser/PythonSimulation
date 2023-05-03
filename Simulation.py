@@ -4,8 +4,8 @@ import pandas as pd
 
 class rocket():
     masse = 2
-    runtime = 60
-    tw_f = 40
+    runtime = 120
+    tw_f = 28
     hoehe = 0
     entfernung = 0
     vh = 0
@@ -27,7 +27,7 @@ E = []
 VH = []
 AH = []
 
-k = 0.001 # Luftwiederstand
+k = 0.01 # Luftwiederstand
 
 si = float(input("Genauigkeit (Kleiner ist genauer):  ")) #SimulationsIntervall
 
@@ -40,10 +40,7 @@ def TriebwerkLaufzeit(runtime,time, tw_f):
         return(0)
     else:
         return(tw_f)
-    if time >= runtime+20:
-        return(40)
-    if time >= runtime+30:
-            return(0)
+    
 def MaxHöhe(Höhe):
     maxh = 0
     for h in Höhe:
@@ -62,7 +59,7 @@ for timer in range(1,t+1):
         r.ah = float(((r.tw_f-r.masse*u.g)/r.masse))
     AH.append(r.ah)
     H.append(r.hoehe)
-    T.append(timer)
+    T.append(sz)
     
     if r.hoehe<0:
         print("Aufgekommen nach "+str(sz)+" sek Maximal Höhe: "+str(MaxHöhe(H))+" Schritte: "+str(timer))
@@ -77,13 +74,13 @@ TVH =pd.DataFrame({'x': T,
                    'y': VH,})
 TAH =pd.DataFrame({'x': T,
                    'y': AH,})
-fig1 = px.line(TH, x = 'x', y = 'y', markers = True,title = "Line chart title",
+fig1 = px.line(TH, x = 'x', y = 'y', markers = False,title = "Höhe",
               labels = {'x': 'Zeit in s', 'y':'Höhe in m'})
-fig2 = px.line(TVH, x = 'x', y = 'y', markers = True,title = "Line chart title",
+fig2 = px.line(TVH, x = 'x', y = 'y', markers = False,title = "Geschwindikeit",
               labels = {'x': 'Zeit in s', 'y':'Geschwindikeit in m/s'})
-fig3 = px.line(TAH, x = 'x', y = 'y', markers = True,title = "Line chart title",
+fig3 = px.line(TAH, x = 'x', y = 'y', markers = False,title = "Beschleunigung",
               labels = {'x': 'Zeit in s', 'y':'Beschleunigung in m/s*s'})
 if input("Open Diagramm y/n -- ") == "y":
-    fig1.show()
+    #fig1.show()
     fig2.show()
-    fig3.show()
+    #fig3.show()
