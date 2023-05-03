@@ -40,6 +40,10 @@ def TriebwerkLaufzeit(runtime,time, tw_f):
         return(0)
     else:
         return(tw_f)
+    if time >= runtime+20:
+        return(40)
+    if time >= runtime+30:
+            return(0)
 def MaxHöhe(Höhe):
     maxh = 0
     for h in Höhe:
