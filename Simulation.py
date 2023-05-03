@@ -3,7 +3,7 @@ import plotly.express as px
 import pandas as pd
 
 # Definiere die Eigenschaften der Rakete und ihrer Umgebung
-class rocket():
+class Rakete():
     masse = 2
     runtime = 60
     tw_f = 40
@@ -21,7 +21,7 @@ class Umgebung():
     g = 9.81
 
 u = Umgebung()
-r = rocket()
+r = Rakete()
 
 # Speichere die Daten der Simulation
 T = []
@@ -83,8 +83,11 @@ for timer in range(1,t+1):
     sz+=si
 
 # Ausgabe der Simulation
-print("Finished")
-
+print("Simulation completed")
+print("Maximum height: "+str(MaxHöhe(H))+" meters")
+print("Maximum velocity: "+str(max(VH))+" meters/second")
+print("Maximum acceleration: "+str(max(AH))+" meters/second^2")
+print("Total flight time: "+str(sz)+" seconds")
 # Erstelle Datenrahmen und Diagramme mit Plotly
 TH = pd.DataFrame({'x': T, 'y': H})
 TVH =pd.DataFrame({'x': T, 'y': VH})
