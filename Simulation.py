@@ -81,6 +81,6 @@ fig2 = px.line(TVH, x = 'x', y = 'y', markers = False,title = "Geschwindikeit",
 fig3 = px.line(TAH, x = 'x', y = 'y', markers = False,title = "Beschleunigung",
               labels = {'x': 'Zeit in s', 'y':'Beschleunigung in m/s*s'})
 if input("Open Diagramm y/n -- ") == "y":
-    #fig1.show()
+    fig1.show()
     fig2.show()
-    #fig3.show()
+    fig3.show()
