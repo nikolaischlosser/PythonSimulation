@@ -2,10 +2,11 @@ from math import *
 import plotly.express as px
 import pandas as pd
 
+# Definiere die Eigenschaften der Rakete und ihrer Umgebung
 class rocket():
     masse = 2
-    runtime = 120
-    tw_f = 28
+    runtime = 60
+    tw_f = 40
     hoehe = 0
     entfernung = 0
     vh = 0
@@ -21,26 +22,34 @@ class Umgebung():
 
 u = Umgebung()
 r = rocket()
+
+# Speichere die Daten der Simulation
 T = []
 H = []
 E = []
 VH = []
 AH = []
 
-k = 0.01 # Luftwiederstand
+# Konstante für den Luftwiderstand
+k = 0.001
 
-si = float(input("Genauigkeit (Kleiner ist genauer):  ")) #SimulationsIntervall
+# Benutzereingabe für die Genauigkeit der Simulation
+si = float(input("Genauigkeit (Kleiner ist genauer):  "))
 
-t = int(1000/si) # MaxSimulationsschritte
+# Berechne die Anzahl der Simulationsschritte
+t = int(1000/si)
 
+# Initialisiere den Zeitschritt
 sz = 0
 
-def TriebwerkLaufzeit(runtime,time, tw_f):
+# Funktion zum Überprüfen der Laufzeit des Triebwerks
+def TriebwerkLaufzeit(runtime, time, tw_f):
     if time >= runtime:
         return(0)
     else:
         return(tw_f)
-    
+
+# Funktion zum Finden der maximalen Höhe
 def MaxHöhe(Höhe):
     maxh = 0
     for h in Höhe:
@@ -48,10 +57,16 @@ def MaxHöhe(Höhe):
             maxh = h
     return(maxh)
 
+# Schleife für die Simulation
 for timer in range(1,t+1):
+    # Berechne die Höhe und Geschwindigkeit der Rakete
     r.hoehe = r.hoehe+r.vh * si
     r.vh = r.vh + r.ah * si
+
+    # Überprüfe, wie lange das Triebwerk laufen soll
     r.tw_f = TriebwerkLaufzeit(r.runtime, sz, r.tw_f)
+
+    # Berechne die Beschleunigung der Rakete
     VH.append(r.vh)
     if r.ah != 0:
         r.ah = float(((r.tw_f-r.masse*u.g)/r.masse))-k*r.vh*r.vh*(r.vh/sqrt(r.vh*r.vh))
@@ -59,21 +74,21 @@ for timer in range(1,t+1):
         r.ah = float(((r.tw_f-r.masse*u.g)/r.masse))
     AH.append(r.ah)
     H.append(r.hoehe)
-    T.append(sz)
-    
+    T.append(timer)
+
+    # Überprüfe, ob die Rakete auf dem Boden angekommen ist
     if r.hoehe<0:
         print("Aufgekommen nach "+str(sz)+" sek Maximal Höhe: "+str(MaxHöhe(H))+" Schritte: "+str(timer))
-        
         break
     sz+=si
+
+# Ausgabe der Simulation
 print("Finished")
 
-TH = pd.DataFrame({'x': T,
-                   'y': H,})
-TVH =pd.DataFrame({'x': T,
-                   'y': VH,})
-TAH =pd.DataFrame({'x': T,
-                   'y': AH,})
+# Erstelle Datenrahmen und Diagramme mit Plotly
+TH = pd.DataFrame({'x': T, 'y': H})
+TVH =pd.DataFrame({'x': T, 'y': VH})
+TAH =pd.DataFrame({'x': T, 'y': AH})
 fig1 = px.line(TH, x = 'x', y = 'y', markers = False,title = "Höhe",
               labels = {'x': 'Zeit in s', 'y':'Höhe in m'})
 fig2 = px.line(TVH, x = 'x', y = 'y', markers = False,title = "Geschwindikeit",
