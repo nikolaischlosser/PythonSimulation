@@ -2,8 +2,9 @@ from math import *
 import plotly.express as px
 import pandas as pd
 import tkinter as tk
-import UI as ui
 
+
+# Definiere die Eigenschaften der Rakete und ihrer Umgebung
 class Rakete():
     masse = 2
     runtime = 60
@@ -38,8 +39,7 @@ def MaxHöhe(Höhe):
     return(maxh)
 
 # Schleife für die Simulation
-def Simulation():
-    si = float(ui.input_Zeitschritte.get())
+def Simulation(si):
         # Speichere die Daten der Simulation
     T = []
     H = []
@@ -99,3 +99,7 @@ def open_diagramm(T , H, VH, AH):
         fig1.show()
         fig2.show()
         fig3.show()
+
+T , H, VH, AH, Simulstions_Zeit = Simulation(float(input("Genauigkeit (Kleiner ist genauer):  ")))
+Simulation_out(T, H, VH, AH, Simulstions_Zeit)
+open_diagramm(T , H, VH, AH)
