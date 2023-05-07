@@ -71,7 +71,6 @@ def Simulation(si):
 
         # Überprüfe, ob die Rakete auf dem Boden angekommen ist
         if r.hoehe<0:
-            print("Aufgekommen nach "+str(sz)+" sek Maximal Höhe: "+str(MaxHöhe(H))+" Schritte: "+str(timer))
             break
         sz+=si
 
@@ -99,7 +98,3 @@ def open_diagramm(T , H, VH, AH):
         fig1.show()
         fig2.show()
         fig3.show()
-
-T , H, VH, AH, Simulstions_Zeit = Simulation(float(input("Genauigkeit (Kleiner ist genauer):  ")))
-Simulation_out(T, H, VH, AH, Simulstions_Zeit)
-open_diagramm(T , H, VH, AH)
